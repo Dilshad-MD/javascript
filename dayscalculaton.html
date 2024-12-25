@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day Calculator</title>
+  
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+select, input, button {
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+
+  </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Day Calculator</h1>
+        <label for="day-select">Choose a starting day:</label>
+        <select id="day-select">
+          <option value="0">Sunday</option>
+          <option value="1">Monday</option>
+          <option value="2">Tuesday</option>
+          <option value="3">Wednesday</option>
+          <option value="4">Thursday</option>
+          <option value="5">Friday</option>
+          <option value="6">Saturday</option>
+        </select>
+    
+        <label for="days-input">Enter the number of additional days:</label>
+        <input type="number" id="days-input" placeholder="Enter days (e.g., 80)" min="0">
+    
+        <button id="calculate-btn">Calculate</button>
+    
+        <label for="result-box">Resulting Day:</label>
+        <input type="text" id="result-box" readonly>
+      </div>
+
+<script>
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    document.getElementById("calculate-btn").addEventListener("click", function () {
+      const startCode = parseInt(document.getElementById("day-select").value);
+      const additionalDays = parseInt(document.getElementById("days-input").value);
+      if (isNaN(additionalDays) || additionalDays < 0) {
+        document.getElementById("result-box").value = "Invalid input!";
+        return;
+      }
+      const finalDayCode = (startCode + additionalDays) % 7;
+      document.getElementById("result-box").value = ` Day after ${additionalDays} days: ${days[finalDayCode]}`;
+    });
+</script>
+</body>
+</html>
