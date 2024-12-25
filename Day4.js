@@ -15,6 +15,6 @@
 // let x = 5;
 // console.log(~x)
 
-// console.log(~10);
+console.log(~10);
 
 
